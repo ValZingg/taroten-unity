@@ -1,0 +1,3 @@
+description=- MAYA - |Une fille mysterieuse qui ne parle pas beaucoup.|==============================|Commence avec les cartes suivantes : |La Mort, Le Fou, Le Diable, La Tour, Le Pendu, Le Magicien.
+maxhp=10
+startingcards=DEA,FOO,DEV,TOW,MAG
