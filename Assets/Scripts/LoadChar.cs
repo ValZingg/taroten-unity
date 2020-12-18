@@ -59,6 +59,7 @@ public class LoadChar : MonoBehaviour
         //change la description affichée
         DescriptionUI.text = description;
         big_char_image_UI.sprite = big_char_image;
+        big_char_image_UI.GetComponent<Image>().color = new Color(255f, 255f, 255f, 1f); // on rétablit l'opacité pour que le sprite soit visible.
     }
 
     public void EnableStartButton() //affiche le bouton pour commencer la partie
