@@ -28,6 +28,9 @@ public class GenerateLevel : MonoBehaviour
     private bool has_placed_player = false;
 
     public const int room_amount = 15;
+
+    public GameObject charscriptlocation;// Le "BG_Text" qui contient les scripts, qui n'a pas été supprimé la scène d'avant
+    public GameObject startbutton; //le bouton pour commencer, caché au départ de la scène
     //====================
 
     // Start is called before the first frame update
@@ -40,22 +43,37 @@ public class GenerateLevel : MonoBehaviour
         line_to_write = "identifier=" + identifier;
         System.IO.File.WriteAllText(filename, line_to_write);
 
-             //Séparateur pour le fichier
-        line_to_write = "\n------------------======= LEVEL 1 =======-------------------";
+        charscriptlocation = GameObject.Find("BG_Texture");
+        line_to_write = "\ncharacter=" + charscriptlocation.GetComponent<LoadChar>().charname; //utilise le gameobject qui n'a pas été supprimé pour chopper le nom du perso
         System.IO.File.AppendAllText(filename, line_to_write);
+        Destroy(charscriptlocation); //le supprime après, parce que plus besoin de lui
 
-        //Les salles
-        int[] Rooms = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //faut le remplir de 0 sinon il veux pas
-        has_placed_player = false;
-        for (int i = 0;i < room_amount;i++)
+        UpdateLoadingBar(100);
+
+        //Génération des salles des 3 niveaux           
+        for (int k = 1;k < 4;k++)
         {
-            if(!has_placed_player && i != 0) Rooms[i] = Random.Range(1, 5); //définit le type de salle
-            else Rooms[i] = Random.Range(2, 5); // ne génère plus de 1 si le joueur est déjà placé
-
-            if (Rooms[i] == 1) has_placed_player = true; //Si c'est un 1, c'est le départ du joueur, et il ne peux y en avoir qu'un
-            line_to_write = "\nroom" + i + "=" + Rooms[i];
+            //Séparateur pour le fichier
+            line_to_write = "\n------------------======= LEVEL " + k + " =======-------------------";
             System.IO.File.AppendAllText(filename, line_to_write);
+            //Les salles
+            int[] Rooms = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //faut le remplir de 0 sinon il veux pas
+            has_placed_player = false;
+            for (int i = 0; i < room_amount; i++)
+            {
+                if (!has_placed_player && i != 0) Rooms[i] = Random.Range(1, 5); //définit le type de salle
+                else Rooms[i] = Random.Range(2, 5); // ne génère plus de 1 si le joueur est déjà placé
+
+                if (Rooms[i] == 1) has_placed_player = true; //Si c'est un 1, c'est le départ du joueur, et il ne peux y en avoir qu'un
+                line_to_write = "\nroom" + i + "=" + Rooms[i];
+                System.IO.File.AppendAllText(filename, line_to_write);
+            }           
+            UpdateLoadingBar(100);
         }
+        UpdateLoadingBar(700);
+
+        //Fin du chargement, apparition du bouton pour commencer enfin la partie.     
+        startbutton.GetComponent<Button>().interactable = true;
 
     }
 
@@ -63,5 +81,12 @@ public class GenerateLevel : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void UpdateLoadingBar(int amount) //augemente la longueur de la barre de chargement
+    {
+        int temp_pushback = amount / 2; //la distance ou on la déplace vers la droite, pour donner l'illusion qu'elle reste immobile
+        LoadingBar.rectTransform.sizeDelta = new Vector2(LoadingBar.rectTransform.sizeDelta.x + amount, LoadingBar.rectTransform.sizeDelta.y);
+        LoadingBar.transform.position = new Vector3(LoadingBar.transform.position.x + temp_pushback, LoadingBar.transform.position.y, LoadingBar.transform.position.z);
     }
 }

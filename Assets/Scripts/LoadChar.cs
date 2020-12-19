@@ -17,6 +17,9 @@ public class LoadChar : MonoBehaviour
     public int max_charhp;
 
 
+    public string CHOSEN_CHAR; //personnage choisi, cette variable est uniquement assignée quand le joueur clique sur "commencer la partie"
+
+
     //=================GUI===============
     public Text DescriptionUI;
     public Image big_char_image_UI;
@@ -33,6 +36,11 @@ public class LoadChar : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject); //sauvegarde une fois la BG_Texture, pour garder le choix du personnage en mémoire
     }
 
     public void loadchar(string filepath)
@@ -65,5 +73,10 @@ public class LoadChar : MonoBehaviour
     public void EnableStartButton() //affiche le bouton pour commencer la partie
     {
         StartButton.SetActive(true);
+    }
+
+    public void ConfirmCharacter(string name) //confirme le personnage choisi
+    {
+        CHOSEN_CHAR = name;
     }
 }
