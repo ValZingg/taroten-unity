@@ -3,6 +3,7 @@ using System.IO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadLevel : MonoBehaviour
 {
@@ -16,9 +17,14 @@ public class LoadLevel : MonoBehaviour
     private int level2_line;
     private int level3_line;
 
+    public GameObject buttonPrefab;
+
+    public Canvas canvas;
+
     // Start is called before the first frame update
     void Start()
     {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>(); //récupère le canvas
         IDKeeper = GameObject.Find("ID_Keeper");
         string filename = IDKeeper.GetComponent<KeepID>().ID + ".tRUN"; //récupère l'emplacement du fichier de sauvegarde
         lines = System.IO.File.ReadAllLines(filename); //Lis toute les lignes
@@ -87,9 +93,56 @@ public class LoadLevel : MonoBehaviour
         List<int> Rooms = new List<int>();
         for(int i = startingline;i < startingline + 14;i++) //met toutes les salles dans une liste
         {
-            Debug.Log((lines[i].Substring(5 + i.ToString().Length,1)));
-            Rooms.Add(Int32.Parse(lines[i].Substring(5 + i.ToString().Length,1)));
-            Debug.Log("Room " + i + " = type " + Rooms[i]);
+            Rooms.Add(Int32.Parse(lines[i].Substring(lines[i].IndexOf('=') + 1, 1)));
+        }
+
+        //Maintenant que nous avons toutes les salles, il faut les afficher
+
+        //positions
+        float start_x = -738.9f;
+        float start_y = 340.6f;
+        for(int i = 0;i < Rooms.Count;i++)
+        {
+            GameObject LastButtonMade = Instantiate(buttonPrefab); //crée une case
+            LastButtonMade.transform.SetParent(canvas.transform);// le met dans le canvas, sinon il ne s'affichera pas
+
+            //Ré-ajustation de la taille
+            LastButtonMade.GetComponent<RectTransform>().sizeDelta = new Vector2(122, 118);
+            LastButtonMade.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+
+            //Position
+            LastButtonMade.transform.localPosition = new Vector3(start_x,start_y,0);
+            start_x += 150;
+            if (start_x > 800) //saut de ligne
+            {
+                start_x = -738.9f;
+                start_y -= 150.0f;
+            }
+
+            //Icone du bouton
+            switch(Rooms[i]) //change l'icone suivant quel type de salle c'est
+            {
+                case 1: //Entrée joueur
+                    string portraitname = lines[2].Substring(lines[2].IndexOf('=') + 1) + "_portrait";
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/" + portraitname);
+                    break;
+
+                case 2: //Ennemi normal
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");
+                    break;
+
+                case 3: //Trésor
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Chest");
+                    break;
+
+                case 4: //Ennemi élite
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/RedSkool");
+                    break;
+
+                case 5: //Boss et sortie
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/BossSkool");
+                    break;
+            }
         }
     }
 
