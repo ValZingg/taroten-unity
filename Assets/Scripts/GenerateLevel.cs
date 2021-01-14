@@ -30,22 +30,37 @@ public class GenerateLevel : MonoBehaviour
     public const int room_amount = 15;
 
     public GameObject charscriptlocation;// Le "BG_Text" qui contient les scripts, qui n'a pas été supprimé la scène d'avant
-    public GameObject startbutton; //le bouton pour commencer, caché au départ de la scène
+    public GameObject idkeeper; //Un objet vide où on va stocker l'identifiant unique
+
+    public SwitchScene switchscenescript;
     //====================
 
     // Start is called before the first frame update
     void Start()
     {
         identifier = Random.Range(0, 100000); //Génération d'un identifiant unique pour la run
+        idkeeper.GetComponent<KeepID>().ID = identifier; //Sauvegarde l'identifiant dans un objet
         /* Ecriture dans le fichier run */
         string filename = identifier + ".tRUN";
             //L'identifiant
         line_to_write = "identifier=" + identifier;
         System.IO.File.WriteAllText(filename, line_to_write);
 
+        line_to_write = "\ncurrentlyonlevel=1"; //Le niveau actuel du joueur, commence toujours à 1
+        System.IO.File.AppendAllText(filename, line_to_write);
+
         charscriptlocation = GameObject.Find("BG_Texture");
         line_to_write = "\ncharacter=" + charscriptlocation.GetComponent<LoadChar>().charname; //utilise le gameobject qui n'a pas été supprimé pour chopper le nom du perso
         System.IO.File.AppendAllText(filename, line_to_write);
+
+        line_to_write = "\ncards="; //Les cartes
+        System.IO.File.AppendAllText(filename, line_to_write);
+        foreach(var card in charscriptlocation.GetComponent<LoadChar>().cards_str)
+        {
+            line_to_write = card + ",";
+            System.IO.File.AppendAllText(filename, line_to_write);
+        }
+
         Destroy(charscriptlocation); //le supprime après, parce que plus besoin de lui
 
         UpdateLoadingBar(100);
@@ -72,8 +87,7 @@ public class GenerateLevel : MonoBehaviour
         }
         UpdateLoadingBar(700);
 
-        //Fin du chargement, apparition du bouton pour commencer enfin la partie.     
-        startbutton.GetComponent<Button>().interactable = true;
+        switchscenescript.SwitchSceneNow("Explore"); //Switche au jeu après le chargement
 
     }
 

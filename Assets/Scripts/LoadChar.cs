@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,8 @@ public class LoadChar : MonoBehaviour
 
     public int charhp;
     public int max_charhp;
+
+    public List<String> cards_str;
 
 
     public string CHOSEN_CHAR; //personnage choisi, cette variable est uniquement assignée quand le joueur clique sur "commencer la partie"
@@ -57,6 +60,10 @@ public class LoadChar : MonoBehaviour
 
         max_charhp = Int32.Parse(lines[2].Substring(lines[2].IndexOf('=') + 1));
         charhp = max_charhp;
+
+        //Chargement des cartes
+        string startcards_raw = lines[3].Substring(lines[3].IndexOf('=') + 1);
+        cards_str = startcards_raw.Split(',').ToList<string>();
 
         string imagefilepath = "Sprites/" + charname;
         big_char_image = Resources.Load<Sprite>(imagefilepath); //charge l'image du perso selectionné

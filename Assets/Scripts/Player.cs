@@ -5,8 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //===================================
+    public string char_name;
+
     public float HP;
     public float max_HP;
+
+    public List<string> Cards;
     //===================================
 
     Player(float hp)
