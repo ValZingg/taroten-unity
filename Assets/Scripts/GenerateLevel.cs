@@ -11,7 +11,8 @@ public class GenerateLevel : MonoBehaviour
         TYPES DE SALLES
         ===============
 
-        1 = Entrée joueur
+        0 = Vide
+        1 = position joueur
         2 = Ennemi
         3 = Trésor
         4 = Ennemi élite
@@ -26,10 +27,8 @@ public class GenerateLevel : MonoBehaviour
     //=========OTHERS=====
     public int identifier;
     private string line_to_write;
-    private bool has_placed_player = false;
-    private bool has_placed_boss = false;
 
-    public const int room_amount = 15;
+    public const int room_amount = 14;
 
     public GameObject charscriptlocation;// Le "BG_Text" qui contient les scripts, qui n'a pas été supprimé la scène d'avant
     public GameObject idkeeper; //Un objet vide où on va stocker l'identifiant unique
@@ -75,20 +74,14 @@ public class GenerateLevel : MonoBehaviour
             System.IO.File.AppendAllText(filename, line_to_write);
             //Les salles
             int[] Rooms = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //faut le remplir de 0 sinon il veux pas
-            has_placed_player = false;
             for (int i = 0; i < room_amount; i++)
             {
-                if (!has_placed_player && !has_placed_boss) Rooms[i] = Random.Range(1, 6); //définit le type de salle
-                else if(has_placed_player && !has_placed_boss)Rooms[i] = Random.Range(2, 6); // ne génère plus de 1 si le joueur est déjà placé
-                else if(!has_placed_player && has_placed_boss) Rooms[i] = Random.Range(1, 5); // ne génère plus de 5 si le boss est placé
-                else if(has_placed_player && has_placed_boss) Rooms[i] = Random.Range(2, 5); // Plus de 1 ni de 5 si les deux sont placés
-                // ^ Oui c'est moche mais bon, que voulez vous ^
-
-                if (Rooms[i] == 1) has_placed_player = true; //Si c'est un 1, c'est le départ du joueur, et il ne peux y en avoir qu'un
-                if (Rooms[i] == 5) has_placed_boss = true; //Même chose mais pour le boss
-                line_to_write = "\nroom" + i + "=" + Rooms[i];
+                if (i == 0) Rooms[i] = 1; //Joueur est toujours a la première case
+                else if (i == 13) Rooms[i] = 5; //boss toujours à la fin
+                else Rooms[i] = Random.Range(2, 5); //Genère un type de salle aléatoire
+                line_to_write = "\nroom" + i + "=" + Rooms[i] + ",done=false";
                 System.IO.File.AppendAllText(filename, line_to_write);
-            }           
+            }
             UpdateLoadingBar(100);
         }
         UpdateLoadingBar(700);

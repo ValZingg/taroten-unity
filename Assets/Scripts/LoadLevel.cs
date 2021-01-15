@@ -10,6 +10,7 @@ public class LoadLevel : MonoBehaviour
     public GameObject IDKeeper; //L'objet qui garde L'ID
 
     private string[] lines;
+    public string PlayerName;
 
     public int level_to_load;
 
@@ -31,6 +32,7 @@ public class LoadLevel : MonoBehaviour
 
         //================= CHARGEMENT DES DONNEES DE BASE ===================
         level_to_load = Int32.Parse(lines[1].Substring(16 + 1)); //Quel niveau charger?
+        PlayerName = lines[2].Substring(lines[2].IndexOf('=') + 1);
 
         //================= CHARGEMENT ET AFFICHAGE DU NIVEAU =================
 
@@ -99,12 +101,16 @@ public class LoadLevel : MonoBehaviour
         //Maintenant que nous avons toutes les salles, il faut les afficher
 
         //positions
-        float start_x = -738.9f;
-        float start_y = 340.6f;
+        float start_x = -550.0f;
+        float start_y = 150.0f;
+        int amountdone = 0;
         for(int i = 0;i < Rooms.Count;i++)
         {
             GameObject LastButtonMade = Instantiate(buttonPrefab); //crée une case
             LastButtonMade.transform.SetParent(canvas.transform);// le met dans le canvas, sinon il ne s'affichera pas
+
+            //Est-ce que la salle est completée ?
+            //TODO
 
             //Ré-ajustation de la taille
             LastButtonMade.GetComponent<RectTransform>().sizeDelta = new Vector2(122, 118);
@@ -112,35 +118,48 @@ public class LoadLevel : MonoBehaviour
 
             //Position
             LastButtonMade.transform.localPosition = new Vector3(start_x,start_y,0);
-            start_x += 150;
-            if (start_x > 800) //saut de ligne
+            if (Rooms[i] != 5 && Rooms[i] != 1)
             {
-                start_x = -738.9f;
+                start_x += 215;
+                amountdone++;
+            }
+            if (amountdone >= 6) //saut de ligne
+            {
+                start_x = -550.0f;
                 start_y -= 150.0f;
+                amountdone = 0;
             }
 
             //Icone du bouton
             switch(Rooms[i]) //change l'icone suivant quel type de salle c'est
             {
                 case 1: //Entrée joueur
-                    string portraitname = lines[2].Substring(lines[2].IndexOf('=') + 1) + "_portrait";
-                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/" + portraitname);
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 1;
+                    //L'entrée du joueur est toujours à gauche de l'écran
+                    LastButtonMade.transform.localPosition = new Vector3(-700.0f, 50.0f, 0);
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = true;
                     break;
 
                 case 2: //Ennemi normal
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 2;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");
                     break;
 
                 case 3: //Trésor
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 3;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Chest");
                     break;
 
                 case 4: //Ennemi élite
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 4;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/RedSkool");
                     break;
 
                 case 5: //Boss et sortie
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 5;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/BossSkool");
+                    //Le boss est toujours tout à droite de l'écran
+                    LastButtonMade.transform.localPosition = new Vector3(700.0f, 50.0f, 0);
                     break;
             }
         }

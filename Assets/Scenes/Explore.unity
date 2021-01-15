@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IDKeeper: {fileID: 0}
+  PlayerName: 
   level_to_load: 0
   buttonPrefab: {fileID: 1752868842103875954, guid: 738c7ff395c17794483fd410825cd000,
     type: 3}
