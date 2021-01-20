@@ -20,6 +20,7 @@ public class LoadLevel : MonoBehaviour
 
     public GameObject buttonPrefab;
 
+
     public Canvas canvas;
 
     // Start is called before the first frame update
@@ -142,7 +143,7 @@ public class LoadLevel : MonoBehaviour
 
                 case 2: //Ennemi normal
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 2;
-                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");     
                     break;
 
                 case 3: //Trésor
