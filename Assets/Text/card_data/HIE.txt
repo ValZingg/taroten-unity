@@ -1,0 +1,2 @@
+Le Hiérophante
+Position 1 : Soigne 2 PVs.|Position 2 : Vous perdez 5 PVs, mais vos PVs maximums augementent de 1.|Position 3 : Double le nombre actual de PVs que vous avez. (Ne permet pas de dépasser la limite)

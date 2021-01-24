@@ -1,0 +1,2 @@
+Le Pendu
+Position 1 : Vous perdez 7 PVs, mais vous triplez les dégâts ce tour|Position 2 : Inflige 8 dégâts si vous jouez le diable en même temps|Position 3 : Génère un chiffre entre 1 et 2. Si c'est 1, vous gagnez le combat, si c'est 2, vous mourrez.

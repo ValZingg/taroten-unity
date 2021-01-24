@@ -79,7 +79,9 @@ public class GenerateLevel : MonoBehaviour
                 if (i == 0) Rooms[i] = 1; //Joueur est toujours a la première case
                 else if (i == 13) Rooms[i] = 5; //boss toujours à la fin
                 else Rooms[i] = Random.Range(2, 5); //Genère un type de salle aléatoire
-                line_to_write = "\nroom" + i + "=" + Rooms[i] + ",done=false";
+
+                if(i == 0) line_to_write = "\nroom" + i + "=" + Rooms[i] + ",done=true";
+                else line_to_write = "\nroom" + i + "=" + Rooms[i] + ",done=false";
                 System.IO.File.AppendAllText(filename, line_to_write);
             }
             UpdateLoadingBar(100);

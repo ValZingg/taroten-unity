@@ -1,0 +1,2 @@
+L'hermite
+Position 1 : Soigne autant de PVs que le niveau où vous vous trouvez.|Position 2 : Vous gagnez 3 point d'armure ce tour.|Position 3 : Inflige des dégâts égal à votre armure.

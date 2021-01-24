@@ -1,0 +1,2 @@
+Le Magicien
+Position 1 : Inflige 4 points de dégâts, 10 si vous jouez le diable.|Position 2 : Vous récuperez 3 PVs.|Position 3 : Vous perdez 4 PV maximum, mais vous gagnez 4 en force.

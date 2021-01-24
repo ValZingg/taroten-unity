@@ -1,0 +1,4 @@
+name=Petit démon
+hp=3
+atk=6
+def=0

@@ -1,0 +1,2 @@
+Le Monde
+Position 1 : Vous recuperez autant de PVs que de cartes dans votre pioche|Position 2 : Défausse votre pioche, et remélange les cartes. Vous gagnez autant de PVs que de cartes défaussées.|Position 3 : Inflige autant de dégâts que votre nombre de cartes total multiplié par 2.

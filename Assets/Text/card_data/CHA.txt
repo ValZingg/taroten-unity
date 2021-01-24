@@ -1,0 +1,2 @@
+Le Chariot
+Position 1 : Inflige 10 dégâts si c'est votre premier tour. Sinon inflige 1.|Position 2 : Soigne 10 PVs si c'est votre premier tour. Sinon soigne 1.|Position 3 : Inflige 10 dégâts et rend 10 PVs si c'est votre premier tour. Sinon, ne fait rien.

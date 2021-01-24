@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{EFAB7C8A-69F5-54D7-6B06-570CEDA3BB11}</ProjectGuid>
+    <ProjectGuid>{EAF1B869-EF95-AD88-F295-B73BDCF20BAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -65,14 +65,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Anim\TestAnimBreathing.cs" />
+    <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyTracker.cs" />
     <Compile Include="Assets\Scripts\ExploreSpot.cs" />
+    <Compile Include="Assets\Scripts\FightLoader.cs" />
     <Compile Include="Assets\Scripts\GenerateLevel.cs" />
+    <Compile Include="Assets\Scripts\GrowOnHover.cs" />
     <Compile Include="Assets\Scripts\KeepID.cs" />
     <Compile Include="Assets\Scripts\LoadChar.cs" />
     <Compile Include="Assets\Scripts\LoadLevel.cs" />
+    <Compile Include="Assets\Scripts\Loot.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\SwitchScene.cs" />
+    <None Include="Assets\Text\card_data\LOV.txt" />
+    <None Include="Assets\Text\card_data\HIE.txt" />
+    <None Include="Assets\Text\card_data\SUN.txt" />
+    <None Include="Assets\Text\card_data\TOW.txt" />
+    <None Include="Assets\Text\card_data\STA.txt" />
+    <None Include="Assets\Text\card_data\HER.txt" />
+    <None Include="Assets\Text\Enemies_ind\small_demon.txt" />
+    <None Include="Assets\Text\Elites_3.txt" />
+    <None Include="Assets\Text\Elites_1.txt" />
+    <None Include="Assets\Text\card_data\DEA.txt" />
     <None Include="Assets\Text\Maya.txt" />
+    <None Include="Assets\Text\card_data\CHA.txt" />
+    <None Include="Assets\Text\card_data\DEV.txt" />
+    <None Include="Assets\Text\Ennemies_2.txt" />
+    <None Include="Assets\Text\card_data\EMP.txt" />
+    <None Include="Assets\Text\card_data\FOO.txt" />
+    <None Include="Assets\Text\card_data\WOF.txt" />
+    <None Include="Assets\Text\card_data\JUS.txt" />
+    <None Include="Assets\Text\card_data\WOR.txt" />
+    <None Include="Assets\Text\Ennemies_3.txt" />
+    <None Include="Assets\Text\card_data\TEM.txt" />
+    <None Include="Assets\Text\Ennemies_1.txt" />
+    <None Include="Assets\Text\card_data\EMF.txt" />
+    <None Include="Assets\Text\card_data\STR.txt" />
+    <None Include="Assets\Text\Enemies_ind\angrybirb.txt" />
+    <None Include="Assets\Text\card_data\ALL_CARDS.txt" />
+    <None Include="Assets\Text\card_data\HAN.txt" />
+    <None Include="Assets\Text\card_data\MAG.txt" />
+    <None Include="Assets\Text\Elites_2.txt" />
+    <None Include="Assets\Text\card_data\MOO.txt" />
+    <None Include="Assets\Text\card_data\HPS.txt" />
+    <None Include="Assets\Text\card_data\JUD.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -257,7 +295,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -605,85 +643,85 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Valentin.ZINGG/Documents/Unity projects/Taroten-unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Valentin/Documents/Unity Game Projects/Taroten2d/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

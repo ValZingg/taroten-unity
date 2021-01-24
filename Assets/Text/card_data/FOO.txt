@@ -1,0 +1,2 @@
+Le Fou
+Position 1 : Fait perdre 1 point d'attaque à l'ennemi|Position 2 : Vole l'armure de l'ennemi|Position 3 : Vous échangez vos PVs avec ceux de l'ennemi

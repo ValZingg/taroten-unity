@@ -1,0 +1,2 @@
+Les Amants
+Position 1 : Inflige 2 points de dégâts et soigne 2 PVs|Position 2 : Multiplie par 2 vos PVs recupérés ce tour.|Position 3 : Empêche l'ennemi de vous attaquer le prochain tour.

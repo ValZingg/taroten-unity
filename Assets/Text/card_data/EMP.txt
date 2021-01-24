@@ -1,0 +1,2 @@
+L'empereur
+Position 1 : Inflige 3 points de dégâts|Position 2 : Octroie autant d'armure que de dégâts infligés|Position 3 : Soigne 2 points de vie (6 si l'empresse est jouée en même temps)

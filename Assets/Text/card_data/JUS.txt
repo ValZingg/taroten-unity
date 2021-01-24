@@ -1,0 +1,2 @@
+Justice
+Position 1 : Inflige autant de dégâts à l'ennemi qu'il vous a infligé le tour d'avant.|Position 2 : Réduit vos PVs à 1, mais vous octroie 40 points d'armure|Position 3 : Si vos PVs sont à 1, Vous rend tout vos PVs.

@@ -1,0 +1,2 @@
+Le Diable
+Position 1 : Inflige 8 dégâts mais vous enlève 3 points de vie|Position 2 : Détruit l'armure ennemie|Position 3 : Si vous jouez la mort en même temps, Inflige 10 dégâts

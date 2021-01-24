@@ -1,0 +1,2 @@
+La Mort
+Position 1 : Inflige 5 points de dégâts|Position 2 : Récupère des PVs suivant les dégâts infligés|Position 3 : Double les dégâts infligés ce tour

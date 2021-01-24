@@ -1,0 +1,2 @@
+Force
+Position 1 : Augemente vos dégâts infligés ce tour de 3|Position 2 : Vous gagnez 2 en force pendant ce combat|Position 3 : Quadruple vos dégâts ce tour. (Cinqtuple si vous jouez le diable en même temps.)

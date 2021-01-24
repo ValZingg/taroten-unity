@@ -8,9 +8,12 @@ using UnityEngine.UI;
 public class LoadLevel : MonoBehaviour
 {
     public GameObject IDKeeper; //L'objet qui garde L'ID
+    public GameObject DataTracker;
 
     private string[] lines;
     public string PlayerName;
+
+    public int PlayerPos;
 
     public int level_to_load;
 
@@ -31,9 +34,21 @@ public class LoadLevel : MonoBehaviour
         string filename = IDKeeper.GetComponent<KeepID>().ID + ".tRUN"; //récupère l'emplacement du fichier de sauvegarde
         lines = System.IO.File.ReadAllLines(filename); //Lis toute les lignes
 
+        PlayerPos = DataTracker.GetComponent<Player>().current_spot; //position du joueur
+
         //================= CHARGEMENT DES DONNEES DE BASE ===================
         level_to_load = Int32.Parse(lines[1].Substring(16 + 1)); //Quel niveau charger?
         PlayerName = lines[2].Substring(lines[2].IndexOf('=') + 1);
+        DataTracker.GetComponent<Player>().char_name = PlayerName;
+
+        string[] linesplayer = System.IO.File.ReadAllLines("Assets/Text/" + PlayerName + ".txt");
+        if(DataTracker.GetComponent<Player>().Firstload == false)
+        {
+            DataTracker.GetComponent<Player>().max_HP = Int32.Parse(linesplayer[2].Substring(linesplayer[2].IndexOf('=') + 1)); //récupère les hp max du perso
+            DataTracker.GetComponent<Player>().HP = DataTracker.GetComponent<Player>().max_HP;
+            DataTracker.GetComponent<Player>().Firstload = true;
+        }
+            
 
         //================= CHARGEMENT ET AFFICHAGE DU NIVEAU =================
 
@@ -43,17 +58,14 @@ public class LoadLevel : MonoBehaviour
         while (lines[i][0] != '-') i++; //Tant que la ligne ne commence pas avec un - (Séparateur), On continue de chercher
         i++; //Pour arrondir
         level1_line = i; //Les données du niveau 1 à partir de cette ligne
-        Debug.Log("Level 1 found at line " + level1_line);
 
         while (lines[i][0] != '-') i++; //Tant que la ligne ne commence pas avec un - (Séparateur), On continue de chercher
         i++; //Pour arrondir
         level2_line = i; //Les données du niveau 1 à partir de cette ligne
-        Debug.Log("Level 2 found at line " + level2_line);
 
         while (lines[i][0] != '-') i++; //Tant que la ligne ne commence pas avec un - (Séparateur), On continue de chercher
         i++; //Pour arrondir
         level3_line = i; //Les données du niveau 1 à partir de cette ligne
-        Debug.Log("Level 3 found at line " + level3_line);
 
         //AFFICHAGE DU NIVEAU
         switch (level_to_load)
@@ -109,13 +121,19 @@ public class LoadLevel : MonoBehaviour
         {
             GameObject LastButtonMade = Instantiate(buttonPrefab); //crée une case
             LastButtonMade.transform.SetParent(canvas.transform);// le met dans le canvas, sinon il ne s'affichera pas
+            LastButtonMade.GetComponent<ExploreSpot>().ID = i;
 
             //Est-ce que la salle est completée ?
+            bool Is_done = bool.Parse(lines[startingline + i].Substring(lines[startingline + i].IndexOf(',') + 6));          
+            if (Is_done) LastButtonMade.GetComponent<ExploreSpot>().Explored = true;
             //TODO
 
             //Ré-ajustation de la taille
             LastButtonMade.GetComponent<RectTransform>().sizeDelta = new Vector2(122, 118);
             LastButtonMade.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+
+            //Est-ce que le joueur peut y aller ?
+            if (i == PlayerPos + 1 || i == PlayerPos + 7) LastButtonMade.GetComponent<ExploreSpot>().Can_Move_Here = true; //oui le joueur peut aller là
 
             //Position
             LastButtonMade.transform.localPosition = new Vector3(start_x,start_y,0);
@@ -143,7 +161,7 @@ public class LoadLevel : MonoBehaviour
 
                 case 2: //Ennemi normal
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 2;
-                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");     
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");    
                     break;
 
                 case 3: //Trésor

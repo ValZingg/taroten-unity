@@ -1,0 +1,2 @@
+Le Soleil
+Position 1 : Inflige 3 points de dégâts|Position 2 : Inflige 6 points de dégâts|Position 3 : Inflige 20 points de dégâts si vous jouez la lune et l'étoile en même temps.

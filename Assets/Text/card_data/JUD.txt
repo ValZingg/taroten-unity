@@ -1,0 +1,2 @@
+Jugement
+Position 1 : Si votre ennemi a moins de 5 PV, le tue.|Position 2 : Si votre ennemi a moins de 7 D'attaque, le tue, sinon, vous mourrez.|Position 3 : Tue l'ennemi instantanément, Mais vous perdez 5 PVs maximum.

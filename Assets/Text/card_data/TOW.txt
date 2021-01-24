@@ -1,0 +1,2 @@
+La Tour
+Position 1 : Vous octroie 6 points d'armure mais vous perdez 1 PV|Position 2 : Double votre Armure ce tour ci.|Position 3 : Inflige autant de dégâts que votre armure mais multiplié par 2.

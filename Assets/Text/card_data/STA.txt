@@ -1,0 +1,2 @@
+L'étoile
+Position 1 : Vous soigne de 3 PVs.|Position 2 : Vous soigne de 6 PVs.|Position 3 : Soigne tout vos PVs si vous jouez la lune et le soleil en même temps.

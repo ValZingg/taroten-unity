@@ -1,0 +1,2 @@
+La Roue de la Fortune
+Position 1 : Augemente vos chances de gagner un objet après ce combat.|Position 2 : Vous perdez 5 PVs, mais augementez grandement vos chances de trouver un objet après ce combat.|Position 3 : Inflige entre 1 et 20 dégâts.
