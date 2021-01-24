@@ -31,6 +31,7 @@ public class LoadLevel : MonoBehaviour
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>(); //récupère le canvas
         IDKeeper = GameObject.Find("ID_Keeper");
+        DataTracker = GameObject.Find("DataTracker");
         string filename = IDKeeper.GetComponent<KeepID>().ID + ".tRUN"; //récupère l'emplacement du fichier de sauvegarde
         lines = System.IO.File.ReadAllLines(filename); //Lis toute les lignes
 
@@ -137,7 +138,7 @@ public class LoadLevel : MonoBehaviour
 
             //Position
             LastButtonMade.transform.localPosition = new Vector3(start_x,start_y,0);
-            if (Rooms[i] != 5 && Rooms[i] != 1)
+            if (Rooms[i] != 5 && Rooms[i] != 6)
             {
                 start_x += 215;
                 amountdone++;
@@ -152,35 +153,52 @@ public class LoadLevel : MonoBehaviour
             //Icone du bouton
             switch(Rooms[i]) //change l'icone suivant quel type de salle c'est
             {
-                case 1: //Entrée joueur
+                case 0: //case vide
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 0;
+                    LastButtonMade.GetComponent<ExploreSpot>().Explored = true;
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/buttontexture1");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
+                    break;
+
+                case 1: //Joueur
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 1;
-                    //L'entrée du joueur est toujours à gauche de l'écran
-                    LastButtonMade.transform.localPosition = new Vector3(-700.0f, 50.0f, 0);
                     LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = true;
                     break;
 
                 case 2: //Ennemi normal
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 2;
-                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");    
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skool");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
                     break;
 
                 case 3: //Trésor
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 3;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Chest");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
                     break;
 
                 case 4: //Ennemi élite
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 4;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/RedSkool");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
                     break;
 
                 case 5: //Boss et sortie
                     LastButtonMade.GetComponent<ExploreSpot>().Type = 5;
                     LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/BossSkool");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
                     //Le boss est toujours tout à droite de l'écran
                     LastButtonMade.transform.localPosition = new Vector3(700.0f, 50.0f, 0);
                     break;
+
+                case 6: //Entrée
+                    LastButtonMade.GetComponent<ExploreSpot>().Type = 6;
+                    LastButtonMade.GetComponent<ExploreSpot>().Explored = true;
+                    LastButtonMade.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/buttontexture1");
+                    LastButtonMade.GetComponent<ExploreSpot>().Player_Is_Here = false;
+                    break;
             }
+            if(i == 0) LastButtonMade.transform.localPosition = new Vector3(-700.0f, 50.0f, 0);
         }
     }
 

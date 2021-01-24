@@ -17,6 +17,7 @@ public class GenerateLevel : MonoBehaviour
         3 = Trésor
         4 = Ennemi élite
         5 = Boss et sortie
+        6 = Entrée
      
      */
 
@@ -52,6 +53,8 @@ public class GenerateLevel : MonoBehaviour
 
         charscriptlocation = GameObject.Find("BG_Texture");
         line_to_write = "\ncharacter=" + charscriptlocation.GetComponent<LoadChar>().charname; //utilise le gameobject qui n'a pas été supprimé pour chopper le nom du perso
+        GameObject.Find("DataTracker").GetComponent<Player>().char_name = charscriptlocation.GetComponent<LoadChar>().charname;
+        GameObject.Find("DataTracker").GetComponent<Player>().LoadDefaultCards(GameObject.Find("DataTracker").GetComponent<Player>().char_name);
         System.IO.File.AppendAllText(filename, line_to_write);
 
         line_to_write = "\ncards="; //Les cartes
@@ -76,7 +79,7 @@ public class GenerateLevel : MonoBehaviour
             int[] Rooms = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //faut le remplir de 0 sinon il veux pas
             for (int i = 0; i < room_amount; i++)
             {
-                if (i == 0) Rooms[i] = 1; //Joueur est toujours a la première case
+                if (i == 0) Rooms[i] = 6; //Joueur est toujours a la première case
                 else if (i == 13) Rooms[i] = 5; //boss toujours à la fin
                 else Rooms[i] = Random.Range(2, 5); //Genère un type de salle aléatoire
 

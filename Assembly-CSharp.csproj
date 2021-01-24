@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\EnemyTracker.cs" />
     <Compile Include="Assets\Scripts\ExploreSpot.cs" />
     <Compile Include="Assets\Scripts\FightLoader.cs" />
+    <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\GenerateLevel.cs" />
     <Compile Include="Assets\Scripts\GrowOnHover.cs" />
     <Compile Include="Assets\Scripts\KeepID.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\LoadLevel.cs" />
     <Compile Include="Assets\Scripts\Loot.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\SaveProgress.cs" />
     <Compile Include="Assets\Scripts\SwitchScene.cs" />
     <None Include="Assets\Text\card_data\LOV.txt" />
     <None Include="Assets\Text\card_data\HIE.txt" />
@@ -88,8 +90,11 @@
     <None Include="Assets\Text\Enemies_ind\small_demon.txt" />
     <None Include="Assets\Text\Elites_3.txt" />
     <None Include="Assets\Text\Elites_1.txt" />
+    <None Include="Assets\Text\Enemies_ind\robb.txt" />
+    <None Include="Assets\Text\Enemies_ind\blob.txt" />
     <None Include="Assets\Text\card_data\DEA.txt" />
     <None Include="Assets\Text\Maya.txt" />
+    <None Include="Assets\Text\Enemies_ind\thing.txt" />
     <None Include="Assets\Text\card_data\CHA.txt" />
     <None Include="Assets\Text\card_data\DEV.txt" />
     <None Include="Assets\Text\Ennemies_2.txt" />

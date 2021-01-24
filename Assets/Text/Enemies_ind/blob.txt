@@ -1,0 +1,4 @@
+name=Blob Sombre
+hp=10
+atk=1
+def=5

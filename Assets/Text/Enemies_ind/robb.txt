@@ -1,0 +1,4 @@
+name=Robb
+hp=12
+atk=3
+def=3

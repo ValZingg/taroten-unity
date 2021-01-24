@@ -18,6 +18,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     Vector3 cachedScale;
 
+    public bool ZoomOnHover = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        if(ZoomOnHover) transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         DescBG.enabled = true;
         DescUI.enabled = true;
         DescUI.text = Name + "\n\n" + Desc;
@@ -41,7 +43,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.localScale = cachedScale;
+        if(ZoomOnHover) transform.localScale = cachedScale;
         DescBG.enabled = false;
         DescUI.enabled = false;
     }

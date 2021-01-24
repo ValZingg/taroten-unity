@@ -54,8 +54,14 @@ public class ExploreSpot : MonoBehaviour
         {
             case 2:
                 BUTTON.onClick.AddListener(delegate {
-                    if(Can_Move_Here) HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                    if (Can_Move_Here)
+                    {
+                        HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                        GameObject.Find("DataTracker").GetComponent<Player>().last_spot = GameObject.Find("DataTracker").GetComponent<Player>().current_spot;
+                        GameObject.Find("DataTracker").GetComponent<Player>().current_spot = ID;
+                    }
                     GameObject.Find("DataTracker").GetComponent<EnemyTracker>().SetTypeOfEnemy("Enemy"); //sauve le fait qu'on va combattre un ennemi de ce type
+                    
 
                     if (GameObject.Find("DataTracker").GetComponent<Player>().PathChosen == "Aucun")// si le joueur n'a pas encore choisi de chemin
                     {
@@ -72,8 +78,13 @@ public class ExploreSpot : MonoBehaviour
                 break;
 
             case 3:
-                BUTTON.onClick.AddListener(delegate { 
-                    if(Can_Move_Here) HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Treasure"); //crée le lien avec la scène trésor
+                BUTTON.onClick.AddListener(delegate {
+                    if (Can_Move_Here)
+                    {
+                        HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Loot"); //crée le lien avec la scène trésor
+                        GameObject.Find("DataTracker").GetComponent<Player>().last_spot = GameObject.Find("DataTracker").GetComponent<Player>().current_spot;
+                        GameObject.Find("DataTracker").GetComponent<Player>().current_spot = ID;
+                    }
 
                     if (GameObject.Find("DataTracker").GetComponent<Player>().PathChosen == "Aucun")// si le joueur n'a pas encore choisi de chemin
                     {
@@ -90,8 +101,13 @@ public class ExploreSpot : MonoBehaviour
                 break;
 
             case 4:
-                BUTTON.onClick.AddListener(delegate { 
-                    if(Can_Move_Here) HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                BUTTON.onClick.AddListener(delegate {
+                    if (Can_Move_Here)
+                    {
+                        HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                        GameObject.Find("DataTracker").GetComponent<Player>().last_spot = GameObject.Find("DataTracker").GetComponent<Player>().current_spot;
+                        GameObject.Find("DataTracker").GetComponent<Player>().current_spot = ID;
+                    }
                     GameObject.Find("DataTracker").GetComponent<EnemyTracker>().SetTypeOfEnemy("Elite"); //sauve le fait qu'on va combattre un ennemi de ce type
 
                     if (GameObject.Find("DataTracker").GetComponent<Player>().PathChosen == "Aucun")// si le joueur n'a pas encore choisi de chemin
@@ -111,8 +127,13 @@ public class ExploreSpot : MonoBehaviour
                 break;
 
             case 5:
-                BUTTON.onClick.AddListener(delegate { 
-                    if(Can_Move_Here) HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                BUTTON.onClick.AddListener(delegate {
+                    if (Can_Move_Here)
+                    {
+                        HUD_stuff.GetComponent<SwitchScene>().SwitchSceneNow("Fight");
+                        GameObject.Find("DataTracker").GetComponent<Player>().last_spot = GameObject.Find("DataTracker").GetComponent<Player>().current_spot;
+                        GameObject.Find("DataTracker").GetComponent<Player>().current_spot = ID;
+                    }
                     GameObject.Find("DataTracker").GetComponent<EnemyTracker>().SetTypeOfEnemy("Boss"); //sauve le fait qu'on va combattre un ennemi de ce type
 
                     if (GameObject.Find("DataTracker").GetComponent<Player>().PathChosen == "Aucun")// si le joueur n'a pas encore choisi de chemin

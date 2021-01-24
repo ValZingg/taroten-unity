@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public int current_level;
     public int current_spot;
+    public int last_spot;
 
     public int HP;
     public int max_HP;
@@ -38,8 +39,6 @@ public class Player : MonoBehaviour
         current_level = 1;
         current_spot = 0;
 
-        GetCharName();
-        LoadDefaultCards(char_name);
     }
 
     // Update is called once per frame

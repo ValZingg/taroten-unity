@@ -18,6 +18,8 @@ public class FightLoader : MonoBehaviour
     public GameObject EnemyHP;
     public GameObject EnemySHIELD;
 
+    public GameObject LevelBG;
+
     //STATS
     public string enemy_name;
 
@@ -27,6 +29,9 @@ public class FightLoader : MonoBehaviour
     void Start()
     {
         DataTracker = GameObject.Find("DataTracker");
+
+        LevelBG = GameObject.Find("LevelBG");
+        LevelBG.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Levels/Level" + DataTracker.GetComponent<Player>().current_level.ToString());
 
         CharImage_UI = GameObject.Find("CharImage");
         CharName_UI = GameObject.Find("CharText");

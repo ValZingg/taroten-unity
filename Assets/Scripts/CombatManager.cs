@@ -34,7 +34,7 @@ public class CombatManager : MonoBehaviour
         TopHUD = GameObject.Find("TopHUD");
 
         //Cartes
-        playerdeck = DataTracker.GetComponent<Player>().Cards;
+        playerdeck = DataTracker.GetComponent<Player>().Cards.ToList();
         inpioche = playerdeck;
 
         //Slots de cartes
@@ -609,7 +609,14 @@ public class CombatManager : MonoBehaviour
         //==========dégats et soins=========================
         DataTracker.GetComponent<Player>().HP += NET_HP_GAIN;
         if (DataTracker.GetComponent<Player>().HP > DataTracker.GetComponent<Player>().max_HP) DataTracker.GetComponent<Player>().HP = DataTracker.GetComponent<Player>().max_HP;
-        TopHUD.GetComponent<Enemy>().HP -= NET_ATTACK_DONE + DataTracker.GetComponent<Player>().ATK;
+        
+        if(TopHUD.GetComponent<Enemy>().SHIELD > 0) TopHUD.GetComponent<Enemy>().SHIELD -= NET_ATTACK_DONE + DataTracker.GetComponent<Player>().ATK;
+        else TopHUD.GetComponent<Enemy>().HP -= NET_ATTACK_DONE + DataTracker.GetComponent<Player>().ATK;
+        if (TopHUD.GetComponent<Enemy>().SHIELD < 0)
+        {
+            TopHUD.GetComponent<Enemy>().HP += TopHUD.GetComponent<Enemy>().SHIELD;
+            TopHUD.GetComponent<Enemy>().SHIELD = 0;
+        }
 
         Debug.Log("Inflige " + NET_ATTACK_DONE + " de dégats !!!");
         Debug.Log(" Restore " + NET_HP_GAIN + "de vie !!!");
@@ -629,6 +636,7 @@ public class CombatManager : MonoBehaviour
         {
             //TODO : VICTORY
             DataTracker.GetComponent<Player>().ATK -= STR_TO_REMOVE;
+            gameObject.GetComponent<SwitchScene>().SwitchSceneNow("Loot");
         }
         else
         {
@@ -640,12 +648,16 @@ public class CombatManager : MonoBehaviour
                     throw new MissingComponentException();
 
                 case 0: //ATTAQUE
-                    Debug.Log("ATTAQUE!");
-                    if (DataTracker.GetComponent<Player>().SHIELD > 0) DataTracker.GetComponent<Player>().SHIELD -= TopHUD.GetComponent<Enemy>().ATK;
-                    if(DataTracker.GetComponent<Player>().SHIELD < 0)
+                    if(!noenemyattack)
                     {
-                        DataTracker.GetComponent<Player>().HP += DataTracker.GetComponent<Player>().SHIELD;
-                        DataTracker.GetComponent<Player>().SHIELD = 0;
+                        Debug.Log("ATTAQUE!");
+                        if (DataTracker.GetComponent<Player>().SHIELD > 0) DataTracker.GetComponent<Player>().SHIELD -= TopHUD.GetComponent<Enemy>().ATK;
+                        else DataTracker.GetComponent<Player>().HP -= TopHUD.GetComponent<Enemy>().ATK;
+                        if (DataTracker.GetComponent<Player>().SHIELD < 0)
+                        {
+                            DataTracker.GetComponent<Player>().HP += DataTracker.GetComponent<Player>().SHIELD;
+                            DataTracker.GetComponent<Player>().SHIELD = 0;
+                        }
                     }
                     break;
 
@@ -655,6 +667,8 @@ public class CombatManager : MonoBehaviour
                     break;
 
             }
+
+            if (DataTracker.GetComponent<Player>().HP <= 0) TopHUD.GetComponent<SwitchScene>().SwitchSceneNow("GameOver");
 
             current_turn++;
             player_turn = true;

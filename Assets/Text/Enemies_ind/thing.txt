@@ -1,0 +1,4 @@
+name=Chose étrange
+hp=15
+atk=5
+def=3
