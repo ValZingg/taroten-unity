@@ -84,6 +84,7 @@
     <None Include="Assets\Text\card_data\LOV.txt" />
     <None Include="Assets\Text\card_data\HIE.txt" />
     <None Include="Assets\Text\card_data\SUN.txt" />
+    <None Include="Assets\Text\Mortimer.txt" />
     <None Include="Assets\Text\card_data\TOW.txt" />
     <None Include="Assets\Text\card_data\STA.txt" />
     <None Include="Assets\Text\card_data\HER.txt" />

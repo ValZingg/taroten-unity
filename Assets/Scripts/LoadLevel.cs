@@ -23,8 +23,13 @@ public class LoadLevel : MonoBehaviour
 
     public GameObject buttonPrefab;
 
-
+    //===UI
     public Canvas canvas;
+    public GameObject PlayerIMG;
+    public GameObject PlayerTEXT;
+    public GameObject PlayerHP_TEXT;
+
+    public GameObject level_text;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,12 @@ public class LoadLevel : MonoBehaviour
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>(); //récupère le canvas
         IDKeeper = GameObject.Find("ID_Keeper");
         DataTracker = GameObject.Find("DataTracker");
+
+        PlayerIMG = GameObject.Find("CharImage");
+        PlayerTEXT = GameObject.Find("PlayerName");
+        PlayerHP_TEXT = GameObject.Find("PlayerHP");
+        level_text = GameObject.Find("LevelText");
+
         string filename = IDKeeper.GetComponent<KeepID>().ID + ".tRUN"; //récupère l'emplacement du fichier de sauvegarde
         lines = System.IO.File.ReadAllLines(filename); //Lis toute les lignes
 
@@ -49,7 +60,13 @@ public class LoadLevel : MonoBehaviour
             DataTracker.GetComponent<Player>().HP = DataTracker.GetComponent<Player>().max_HP;
             DataTracker.GetComponent<Player>().Firstload = true;
         }
-            
+
+        //AFFICHAGE DES STATS SUR UI
+        PlayerIMG.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/" + DataTracker.GetComponent<Player>().char_name + "_portrait");
+        PlayerTEXT.GetComponent<Text>().text = DataTracker.GetComponent<Player>().char_name;
+        PlayerHP_TEXT.GetComponent<Text>().text = "PV : " + DataTracker.GetComponent<Player>().HP.ToString() + " / " + DataTracker.GetComponent<Player>().max_HP.ToString();
+        level_text.GetComponent<Text>().text = "Niveau : " + DataTracker.GetComponent<Player>().current_level.ToString();
+
 
         //================= CHARGEMENT ET AFFICHAGE DU NIVEAU =================
 

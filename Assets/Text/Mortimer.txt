@@ -1,0 +1,4 @@
+charname=Mortimer
+description=- MORTIMER - |Un monstre ayant pris des habitudes humaines.|==============================|Commence avec les cartes suivantes : |Le Magicien, L'étoile, Le soleil, La Lune, Force.
+maxhp=12
+startingcards=MAG,STA,SUN,MOO,STR
