@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEditor.EventSystems;
 
 public class GrowOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {

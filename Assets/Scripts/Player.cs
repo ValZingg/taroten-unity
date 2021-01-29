@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
 
 
     public string PathChosen;
+
+    //====== ITEMS =======
+    public List<string> Items;
     //===================================
 
 

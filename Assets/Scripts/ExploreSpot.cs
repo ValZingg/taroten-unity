@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using UnityEditor.Events;
 
 public class ExploreSpot : MonoBehaviour
 {

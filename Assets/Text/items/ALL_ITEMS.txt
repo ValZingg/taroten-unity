@@ -1,0 +1,9 @@
+advanced_sword.txt
+normal_sword.txt
+wooden_sword.txt
+powered_staff.txt
+medium_staff.txt
+useless_boot.txt
+trefle.txt
+chat.txt
+cursed_chest.txt

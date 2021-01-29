@@ -18,6 +18,8 @@ public class FightLoader : MonoBehaviour
     public GameObject EnemyHP;
     public GameObject EnemySHIELD;
 
+    public GameObject ItemPrefab;
+
     public GameObject LevelBG;
 
     //STATS
@@ -54,6 +56,17 @@ public class FightLoader : MonoBehaviour
         imagefilepath = imagefilepath + "_portrait";
         CharImage_UI.GetComponent<Image>().sprite = Resources.Load<Sprite>(imagefilepath);
         CharName_UI.GetComponent<Text>().text = DataTracker.GetComponent<Player>().char_name;
+
+        //ITEMS
+        if(DataTracker.GetComponent<Player>().Items.Count > 0)
+        {
+            for (int k = 0; k < DataTracker.GetComponent<Player>().Items.Count; k++)
+            {
+                GameObject LastCreatedItem = Instantiate(ItemPrefab);
+                LastCreatedItem.GetComponent<Item>().LoadItem(DataTracker.GetComponent<Player>().Items[k]);
+                LastCreatedItem.transform.SetParent(LastCreatedItem.GetComponent<Item>().Canvass.transform);
+            }
+        }
 
             //ennemi
         enemy_name = ChooseRandomEnemy();
